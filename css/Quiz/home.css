@@ -1,0 +1,524 @@
+body {
+	margin: 0;
+	padding: 0;
+	font-family: sans-serif;
+	background: linear-gradient(#141e30, #243b55);
+}
+
+.login-box {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	width: 25%;
+	padding: 40px;
+	transform: translate(-50%, -50%);
+	background: rgba(0, 0, 0, .5);
+	box-sizing: border-box;
+	box-shadow: 0 15px 25px rgba(0, 0, 0, .6);
+	border-radius: 10px;
+}
+
+.login-box h2 {
+	margin: auto 25% 5%;
+	padding: 0;
+	color: #fff;
+	text-align: center;
+}
+
+.login-box .user-box {
+	position: relative;
+}
+
+.login-box .user-box input {
+	width: 100%;
+	padding: 10px 0;
+	font-size: 16px;
+	color: #fff;
+	margin-bottom: 30px;
+	border: none;
+	border-bottom: 1px solid #fff;
+	outline: none;
+	background: transparent;
+}
+
+.login-box .user-box label {
+	position: absolute;
+	top: 0;
+	left: 0;
+	padding: 10px 0;
+	font-size: 16px;
+	color: #fff;
+	pointer-events: none;
+	transition: .5s;
+}
+
+.login-box .user-box input:focus ~ label,
+.login-box .user-box input:valid ~ label {
+	top: -20px;
+	left: 0;
+	color: #03e9f4;
+	font-size: 12px;
+}
+
+.login-box form a {
+	position: relative;
+	display: inline-block;
+	padding: 10px 20px;
+	color: #03e9f4;
+	font-size: 16px;
+	margin-left: 30%;
+	text-decoration: none;
+	text-transform: uppercase;
+	overflow: hidden;
+	transition: .5s;
+	/*margin-top: 40px;*/
+	letter-spacing: 4px
+}
+
+.login-box a:hover {
+	background: #03e9f4;
+	color: #fff;
+	border-radius: 5px;
+	box-shadow: 0 0 5px #03e9f4,
+	0 0 25px #03e9f4,
+	0 0 50px #03e9f4,
+	0 0 100px #03e9f4;
+}
+
+.login-box a span {
+	position: absolute;
+	display: block;
+}
+
+.login-box a span:nth-child(1) {
+	top: 0;
+	left: -100%;
+	width: 100%;
+	height: 2px;
+	background: linear-gradient(90deg, transparent, #03e9f4);
+	animation: btn-anim1 1s linear infinite;
+}
+
+@keyframes btn-anim1 {
+	0% {
+		left: -100%;
+	}
+	50%, 100% {
+		left: 100%;
+	}
+}
+
+.login-box a span:nth-child(2) {
+	top: -100%;
+	right: 0;
+	width: 2px;
+	height: 100%;
+	background: linear-gradient(180deg, transparent, #03e9f4);
+	animation: btn-anim2 1s linear infinite;
+	animation-delay: .25s
+}
+
+@keyframes btn-anim2 {
+	0% {
+		top: -100%;
+	}
+	50%, 100% {
+		top: 100%;
+	}
+}
+
+.login-box a span:nth-child(3) {
+	bottom: 0;
+	right: -100%;
+	width: 100%;
+	height: 2px;
+	background: linear-gradient(270deg, transparent, #03e9f4);
+	animation: btn-anim3 1s linear infinite;
+	animation-delay: .5s
+}
+
+@keyframes btn-anim3 {
+	0% {
+		right: -100%;
+	}
+	50%, 100% {
+		right: 100%;
+	}
+}
+
+.login-box a span:nth-child(4) {
+	bottom: -100%;
+	left: 0;
+	width: 2px;
+	height: 100%;
+	background: linear-gradient(360deg, transparent, #03e9f4);
+	animation: btn-anim4 1s linear infinite;
+	animation-delay: .75s
+}
+
+@keyframes btn-anim4 {
+	0% {
+		bottom: -100%;
+	}
+	50%, 100% {
+		bottom: 100%;
+	}
+}
+
+
+#quiz_form button {
+	position: relative;
+	display: inline-block;
+	padding: 10px 20px;
+	color: #03e9f4;
+	font-size: 16px;
+	text-decoration: none;
+	text-transform: uppercase;
+	overflow: hidden;
+	transition: .5s;
+	margin-top: 40px;
+
+	letter-spacing: 4px;
+	background: white;
+	color: inherit;
+	border: none;
+	/*padding: 0;*/
+	font: inherit;
+	cursor: pointer;
+	outline: inherit;
+}
+
+#nextBtn{
+	float: right;
+}
+#backBtn{
+	float: left;
+}
+
+#quiz_form button:hover {
+	background: #03e9f4;
+	/*background: #000;*/
+	color: #fff;
+	border-radius: 5px;
+	box-shadow: 0 0 5px #03e9f4,
+	0 0 25px #03e9f4,
+	0 0 50px #03e9f4,
+	0 0 100px #03e9f4;
+}
+
+#quiz_form button span {
+	position: absolute;
+	display: block;
+}
+
+#quiz_form button span:nth-child(1) {
+	top: 0;
+	left: -100%;
+	width: 100%;
+	height: 2px;
+	background: linear-gradient(90deg, transparent, #03e9f4);
+	animation: btn-anim1 1s linear infinite;
+}
+
+@keyframes btn-anim1 {
+	0% {
+		left: -100%;
+	}
+	50%, 100% {
+		left: 100%;
+	}
+}
+
+#quiz_form button span:nth-child(2) {
+	top: -100%;
+	right: 0;
+	width: 2px;
+	height: 100%;
+	background: linear-gradient(180deg, transparent, #03e9f4);
+	animation: btn-anim2 1s linear infinite;
+	animation-delay: .25s
+}
+
+@keyframes btn-anim2 {
+	0% {
+		top: -100%;
+	}
+	50%, 100% {
+		top: 100%;
+	}
+}
+
+#quiz_form button span:nth-child(3) {
+	bottom: 0;
+	right: -100%;
+	width: 100%;
+	height: 2px;
+	background: linear-gradient(270deg, transparent, #03e9f4);
+	animation: btn-anim3 1s linear infinite;
+	animation-delay: .5s
+}
+
+@keyframes btn-anim3 {
+	0% {
+		right: -100%;
+	}
+	50%, 100% {
+		right: 100%;
+	}
+}
+
+#quiz_form button span:nth-child(4) {
+	bottom: -100%;
+	left: 0;
+	width: 2px;
+	height: 100%;
+	background: linear-gradient(360deg, transparent, #03e9f4);
+	animation: btn-anim4 1s linear infinite;
+	animation-delay: .75s
+}
+
+@keyframes btn-anim4 {
+	0% {
+		bottom: -100%;
+	}
+	50%, 100% {
+		bottom: 100%;
+	}
+}
+
+@import url('https://fonts.googleapis.com/css?family=Caveat:400,700|Gochi+Hand');
+
+
+.validationErrors {
+	position: absolute;
+	top: 25%;
+	left: 35%;
+	font-size: 18px;
+	font-family: 'monospace', cursive;
+}
+
+.validationErrors span {
+	display: block;
+	float: left;
+	animation: animate 2.25s linear infinite;
+	margin: 0 15px;
+	padding: 0;
+	position: relative;
+	color: #fff;
+}
+
+.validationErrors span:nth-child(1) {
+	animation-delay: 0s;
+}
+
+.validationErrors span:nth-child(2) {
+	animation-delay: .2s;
+}
+
+.validationErrors span:nth-child(2) {
+	animation-delay: .4s;
+}
+
+.validationErrors span:nth-child(3) {
+	animation-delay: .6s;
+}
+
+.validationErrors span:nth-child(4) {
+	animation-delay: .8s;
+}
+
+.validationErrors span:nth-child(5) {
+	animation-delay: 1s;
+}
+
+.validationErrors span:nth-child(6) {
+	animation-delay: 1.2s;
+}
+
+.validationErrors span:nth-child(7) {
+	animation-delay: 1.4s;
+}
+
+.validationErrors span:nth-child(8) {
+	animation-delay: 1.6s;
+}
+
+.validationErrors span:nth-child(9) {
+	animation-delay: 1.8s;
+}
+
+.validationErrors span:nth-child(10) {
+	animation-delay: 2s;
+}
+
+
+@keyframes animate {
+	0%, 100% {
+		color: #fff;
+		filter: blur(1px);
+		text-shadow: 0 0 10px #00bbff,
+		0 0 20px #00bbff,
+		0 0 40px #00bbff,
+		0 0 80px #00bbff,
+		0 0 120px #00bbff,
+		0 0 200px #00bbff,
+		0 0 300px #00bbff,
+		0 0 400px #00bbff;
+	}
+	5%, 95% {
+		color: #111;
+		filter: blur(0px);
+		text-shadow: none;
+	}
+}
+
+
+
+/*Quiz inner css*/
+#question {
+	--background: #ffffff;
+	--text: #414856;
+	--radio: #7C96B2;
+	--radio-checked: #4F29F0;
+	--radio-size: 20px;
+	--width: 50vh;
+	--height: 50vh;
+	--border-radius: 10px;
+	background: var(--background);
+	width: var(--width);
+	height: var(--height);
+	border-radius: var(--border-radius);
+	color: var(--text);
+	position: relative;
+	box-shadow: 0 10px 30px rgba(65, 72, 86, 0.05);
+	padding: 5vh 5vh;
+	display: grid;
+	grid-template-columns: auto var(--radio-size);
+	align-items: center;
+}
+#question label {
+	cursor: pointer;
+}
+#question input[type=radio] {
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	position: relative;
+	height: var(--radio-size);
+	width: var(--radio-size);
+	outline: none;
+	margin: 0 2vh 0 0;
+	cursor: pointer;
+	border: 2px solid var(--radio);
+	background: transparent;
+	border-radius: 50%;
+	display: grid;
+	justify-self: end;
+	justify-items: center;
+	align-items: center;
+	overflow: hidden;
+	transition: border 0.5s ease;
+}
+#question input[type=radio]::before, #question input[type=radio]::after {
+	content: "";
+	display: flex;
+	justify-self: center;
+	border-radius: 50%;
+}
+#question input[type=radio]::before {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	background: var(--background);
+	z-index: 1;
+	opacity: var(--opacity, 1);
+}
+#question input[type=radio]::after {
+	position: relative;
+	width: calc(100% /2);
+	height: calc(100% /2);
+	background: var(--radio-checked);
+	top: var(--y, 100%);
+	transition: top 0.5s cubic-bezier(0.48, 1.97, 0.5, 0.63);
+}
+#question input[type=radio]:checked {
+	--radio: var(--radio-checked);
+}
+#question input[type=radio]:checked::after {
+	--y: 0%;
+	-webkit-animation: stretch-animate 0.3s ease-out 0.17s;
+	animation: stretch-animate 0.3s ease-out 0.17s;
+}
+#question input[type=radio]:checked::before {
+	--opacity: 0;
+}
+#question input[type=radio]:checked ~ input[type=radio]::after {
+	--y: -100%;
+}
+#question input[type=radio]:not(:checked)::before {
+	--opacity: 1;
+	transition: opacity 0s linear 0.5s;
+}
+
+@-webkit-keyframes stretch-animate {
+	0% {
+		transform: scale(1, 1);
+	}
+	28% {
+		transform: scale(1.15, 0.85);
+	}
+	50% {
+		transform: scale(0.9, 1.1);
+	}
+	100% {
+		transform: scale(1, 1);
+	}
+}
+
+@keyframes stretch-animate {
+	0% {
+		transform: scale(1, 1);
+	}
+	28% {
+		transform: scale(1.15, 0.85);
+	}
+	50% {
+		transform: scale(0.9, 1.1);
+	}
+	100% {
+		transform: scale(1, 1);
+	}
+}
+body {
+
+	height: 100vh;
+	font: 400 16px "Varela Round", sans-serif;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+body .socials {
+	position: fixed;
+	display: block;
+	left: 20px;
+	bottom: 20px;
+}
+body .socials > a {
+	display: block;
+	width: 30px;
+	opacity: 0.2;
+	transform: scale(var(--scale, 0.8));
+	transition: transform 0.3s cubic-bezier(0.38, -0.12, 0.24, 1.91);
+}
+body .socials > a:hover {
+	--scale: 1;
+}
+
+#questionText{
+	padding: 1vh;
+}
+#pTimer {
+	margin: auto;
+	padding: 1vh;
+}
+
