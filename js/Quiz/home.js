@@ -10,9 +10,6 @@ let numberArray = shuffleArray([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]);
 let counter = 0;
 
 /**
- * TODO : Add Timer Movable Indicator
- * TODO : Make layouts like in NILE Slides
- *
  *
  * Clears the local storage firsts
  * Handles the name form

@@ -1,9 +1,10 @@
 <?php
 
-class Quiz extends CI_Controller
+class Quiz extends MX_Controller
 {
 	public function index()
 	{
+		// $this->load->library('form_validation');
 		$this->form_validation->set_rules('user[name]', 'User name', 'required|alpha');
 		if (!empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest') {
 			if (!$this->form_validation->run()) {
