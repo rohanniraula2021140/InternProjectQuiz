@@ -107,7 +107,7 @@
 		</td>
 		<td>
 			<div class="mb-3">
-				<a class="btn btn-outline-danger" href="<?php echo base_url('Patient/billing/listBills'); ?>"
+				<a class="btn btn-outline-danger" href="<?php echo base_url('/billing/listBills'); ?>"
 				   id="cancelTest"><i class="fa-solid fa-delete-left"></i></a>
 				<button id="saveTotalTest" class="btn btn-success"><i class="fa-solid fa-floppy-disk"></i></button>
 			</div>

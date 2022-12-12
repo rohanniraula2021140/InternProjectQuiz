@@ -37,12 +37,9 @@ $(document).ready(function () {
 
 function checkSession() {
 	$.ajax({
-		type: "GET",
-		url: window.location.href.replace('/quiz/admin', '/quiz/handleSession'),
-		data: {
+		type: "GET", url: window.location.href.replace('/quiz/admin', '/quiz/handleSession'), data: {
 			sessionStatus: true
-		},
-		datatype: "json"
+		}, datatype: "json"
 
 	})
 		.done(function (data) {
@@ -74,12 +71,9 @@ function removeLoginAndShowAdminTable() {
 
 function logout() {
 	$.ajax({
-		type: "GET",
-		url: window.location.href.replace('/quiz/admin', '/quiz/handleSession'),
-		data: {
+		type: "GET", url: window.location.href.replace('/quiz/admin', '/quiz/handleSession'), data: {
 			logout: true
-		},
-		datatype: "JSON"
+		}, datatype: "JSON"
 	}).done(function (data) {
 		console.log(data);
 		data = JSON.parse(data);
@@ -105,9 +99,7 @@ function logout() {
 
 function getAdminData() {
 	$.ajax({
-		type: "GET",
-		url: window.location.href.replace('/quiz/admin', '/quiz/getAdminReport'),
-		datatype: "JSON",
+		type: "GET", url: window.location.href.replace('/quiz/admin', '/quiz/getAdminReport'), datatype: "JSON",
 	}).done(function (data) {
 		data = JSON.parse(data);
 		if (data.success) {
@@ -122,9 +114,7 @@ function getAdminData() {
 
 
 function showAdminData(playerStatusArray) {
-	let table = '<h1><span class="blue"></span>Users Table<span class="blue"></span> <span class="yellow">Admin Portal</pan>\n' +
-		'\t</h1> <button type="button" class="btn btn-outline-danger" style="position: absolute;right:3%" onclick="logout()">Logout</button>\n ' +
-		'<table id="adminTable">';
+	let table = '<h1><span class="blue"></span>Users Table<span class="blue"></span> <span class="yellow">Admin Portal</pan>\n' + '\t</h1> <button type="button" class="btn btn-outline-danger" style="position: absolute;right:3%" onclick="logout()">Logout</button>\n ' + '<table id="adminTable">';
 	table += '<tr>';
 	table += '<th>SN</th>';
 	table += '<th>Name</th>';
@@ -144,23 +134,10 @@ function showAdminData(playerStatusArray) {
 		table += '<td>' + playerItem['name'] + '</td>';
 		table += '<td>' + TOTAL_QUESTION + '</td>';
 
-		table += '<td>' +
-			'(' +
-			playerItem['correct'] +
-			'/' +
-			playerItem['attempted'] +
-			'/' +
-			TOTAL_QUESTION +
-			')' +
-			'</td>';
+		table += '<td>' + '(' + playerItem['correct'] + '/' + playerItem['attempted'] + '/' + TOTAL_QUESTION + ')' + '</td>';
 		table += '<td>' + playerItem['date_time'] + '</td>';
 		table += '<td>' + playerItem['total_time'] + '</td>';
-		table += '<td>' + '<button value="' + counter + '" class="reportView btn btn-light" >' +
-			'<span></span>' +
-			'<span></span>' +
-			'<span></span>' +
-			'<span></span>' +
-			'View</button>' + '</div></td>';
+		table += '<td>' + '<button value="' + counter + '" class="reportView btn btn-light" >' + '<span></span>' + '<span></span>' + '<span></span>' + '<span></span>' + 'View</button>' + '</div></td>';
 		table += '</tr>';
 
 	})
@@ -177,7 +154,7 @@ function showAdminData(playerStatusArray) {
 					$('#playerSingleData').fadeIn();
 					getSingleData(name_date_item.name, name_date_item.date_time);
 				}, 1500);
-				return;
+
 			}
 		})
 	});
@@ -203,12 +180,7 @@ function showSingleData(playerQuestionArray) {
 		html += '<div id="question"><div id="questionText">' + playerQuestionItem.question + '<i class="fa fa-question" aria-hidden="true"></i>\n</div>';
 		html += '<div id="pTimer"> ' + playerQuestionItem.time_spent + 's <i class="fa-solid fa-clock"></i></div>';
 		let options = getOptionWithHighlight({
-			options: [
-				playerQuestionItem.a,
-				playerQuestionItem.b,
-				playerQuestionItem.c,
-				playerQuestionItem.d
-			],
+			options: [playerQuestionItem.a, playerQuestionItem.b, playerQuestionItem.c, playerQuestionItem.d],
 			correct: playerQuestionItem.correct,
 			user_result: playerQuestionItem.user_result
 		});

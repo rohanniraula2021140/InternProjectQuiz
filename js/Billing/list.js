@@ -15,11 +15,7 @@ const showList = () => {
 	 */
 	const getBillData = (url, param, func) => {
 		$.ajax({
-			url: BASE_URL + url,
-			data: param,
-			dataType: "JSON",
-			async: false,
-			type: "GET"
+			url: BASE_URL + url, data: param, dataType: "JSON", async: false, type: "GET"
 		}).done(function (data) {
 			func(data);
 		});
@@ -51,7 +47,6 @@ const showList = () => {
 	 * @param data
 	 */
 	let showModal = (data) => {
-		console.log(data);
 		let wholeData = data.data;
 		data = wholeData.bill;
 		let table = `<table class="table table-hover">
@@ -75,20 +70,31 @@ const showList = () => {
 		$('#modalTriggerBtn').click();
 	}
 
-	// STarts here
+	/*
+	 Starts here
+	 */
 	getBillData("billing/getBill", {}, showTable);
+
+	/**
+	 * Shows the bill with all the test in modal
+	 */
 	$('#billTable').on('click', '.viewBtn', function () {
-		// console.log('view Clicked')
 		getBillData("billing/getBill", {id: $(this).val()}, showModal);
 	});
+	/*
+	Sends the bill to remove and refresh page
+	 */
 	$('#billTable').on('click', '.removeBtn', function () {
-
 		getBillData("billing/removeBill", {id: $(this).val()}, refreshPage);
 	});
 
 }
 
-// show toast
+/**
+ * Show the Toast with red or green colour
+ * @param msg string message to be displayed on toast
+ * @param success good or bad condition
+ */
 const showToast = (msg, success) => {
 	$('#toastBody').text(msg);
 	$('#liveToastBtn').click();
@@ -104,7 +110,9 @@ const showToast = (msg, success) => {
 }
 
 
-// Showing the bill list to the user
+/*
+ Showing the bill list to the user
+ */
 $(document).ready(function () {
 	showList();
 })

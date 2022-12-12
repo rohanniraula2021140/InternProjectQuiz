@@ -93,7 +93,6 @@ if (isset($patData)) {
 		   value="">
 </div>
 
-
 <!--Mobile Number input: text-->
 <div class="input-group mb-3 w-50 mt-4" style="display: none;">
 	<span class="input-group-text">Date Time</span>

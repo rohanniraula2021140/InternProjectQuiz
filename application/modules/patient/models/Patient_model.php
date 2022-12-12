@@ -13,9 +13,7 @@ class Patient_model extends CI_Model
 		if (isset($data['id'])) {
 			$id = $data['id'];
 			unset($data['id']);
-			return $this->db
-				->where('id', $id)
-				->update('patients', $data);
+			return $this->db->where('id', $id)->update('patients', $data);
 		} else {
 			return $this->db->insert('patients', $data);
 		}
@@ -23,11 +21,7 @@ class Patient_model extends CI_Model
 
 	public function getPatient($type = null, $value = null)
 	{
-		$result = $this->db->select("pt.id, pt.firstname, pt.surname, pt.age, pt.gender, c.name as countryName , p.name as provinceName, m.name as municipalityName, pt.countryId, pt.provinceId, pt.municipalityId, pt.userLanguage, pt.address, pt.mobileNumber, pt.currentDateTime")
-			->from('patients pt')
-			->join('countries c', 'on pt.countryId = c.countryId')
-			->join('provinces p', 'on pt.provinceId = p.provinceId')
-			->join('municipalities m', 'on pt.municipalityId = m.municipalityId');
+		$result = $this->db->select("pt.id, pt.firstname, pt.surname, pt.age, pt.gender, c.name as countryName , p.name as provinceName, m.name as municipalityName, pt.countryId, pt.provinceId, pt.municipalityId, pt.userLanguage, pt.address, pt.mobileNumber, pt.currentDateTime")->from('patients pt')->join('countries c', 'on pt.countryId = c.countryId')->join('provinces p', 'on pt.provinceId = p.provinceId')->join('municipalities m', 'on pt.municipalityId = m.municipalityId');
 
 		if ($type == 'id') {
 			return $result->where('id', $value)->get()->row_object();

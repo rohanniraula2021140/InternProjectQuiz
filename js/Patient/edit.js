@@ -6,11 +6,7 @@ let BASE_URL = 'http://localhost/InternProjectQuiz/';
  */
 function sendPatientDatabase(patientData) {
 	$.ajax({
-		url: BASE_URL + 'Patient/addPatient',
-		async: false,
-		dataType: "JSON",
-		data: patientData,
-		type: "POST"
+		url: BASE_URL + 'Patient/addPatient', async: false, dataType: "JSON", data: patientData, type: "POST"
 	}).done(function (data) {
 		window.location.href = BASE_URL + "Patient/listPatient";
 	}).fail(function (error) {
@@ -25,9 +21,11 @@ function handleSubmitButton() {
 	let editForm = $('#editPatientForm');
 	let submitButton = $('#submitBtn');
 	let errorField = $('#modalBody');
+	/**
+	 * Submits the form for validation and sends if fine otherwise show modal.
+	 */
 	submitButton.click(function (e) {
 		e.preventDefault();
-		console.log(editForm.serialize());
 		$.ajax({
 			url: BASE_URL + 'Patient/verifyForm',
 			data: editForm.serialize(),
@@ -45,7 +43,6 @@ function handleSubmitButton() {
 				$('#cancelBtn').click();
 			}
 		}).fail(function (error) {
-			console.log(error.responseText);
 		});
 	});
 }
@@ -57,8 +54,7 @@ function setCurrentDateAndTime() {
 	let curDateTime = $('#curDateTime');
 	let date = new Date();
 
-	curDateTime.val(date.toISOString().split('T')[0] + ' '
-		+ date.toTimeString().split(' ')[0]);
+	curDateTime.val(date.toISOString().split('T')[0] + ' ' + date.toTimeString().split(' ')[0]);
 }
 
 /**
@@ -86,6 +82,12 @@ function handleFormDropDown() {
 	 * @param type
 	 */
 	let populateData = (param, select, type) => {
+		/**
+		 * fills the muni, country, province dropdown
+		 * @param select
+		 * @param data
+		 * @param type
+		 */
 		let fillDropdown = (select, data, type) => {
 			select.empty();
 			data.forEach(function (item) {
@@ -107,11 +109,7 @@ function handleFormDropDown() {
 		 */
 		let getRequest = (param, select, type) => {
 			$.ajax({
-				url: BASE_URL + 'Patient/getLocations',
-				data: param,
-				type: "GET",
-				dataType: "JSON",
-				async: false
+				url: BASE_URL + 'Patient/getLocations', data: param, type: "GET", dataType: "JSON", async: false
 			}).done(function (data) {
 				data.data.unshift({id: 0, name: "NONE"});
 				fillDropdown(select, data.data, type);
@@ -133,8 +131,7 @@ function handleFormDropDown() {
 	provinceSelect.change(function () {
 		if (provinceSelect.val() !== "undefined") {
 			populateData({
-				type: "municipalities",
-				'provinceId': provinceSelect.val()
+				type: "municipalities", 'provinceId': provinceSelect.val()
 			}, municipalitySelect, "municipality");
 		} else {
 			resetSelect(municipalitySelect, 'Select province first');
@@ -146,14 +143,14 @@ function handleFormDropDown() {
  * Populates all part of form on edit
  */
 function populateEditForm() {
+	/**
+	 * Gets
+	 * @param id
+	 * @param func
+	 */
 	const getPatientData = (id, func) => {
-		console.log(id);
 		$.ajax({
-			url: BASE_URL + 'Patient/getPatient',
-			async: false,
-			dataType: "JSON",
-			data: {id: id},
-			type: "GET"
+			url: BASE_URL + 'Patient/getPatient', async: false, dataType: "JSON", data: {id: id}, type: "GET"
 		}).done(function (data) {
 			// if (data.success) {
 			func(data.data);
@@ -168,7 +165,6 @@ function populateEditForm() {
 	 * @param data
 	 */
 	const fillPatientData = (data) => {
-		// console.log(data);
 		$('#inputTextFirstname').val(data.firstname)
 		$('#inputTextSurname').val(data.surname)
 		$('#inputNumberAge').val(data.age)
@@ -178,7 +174,6 @@ function populateEditForm() {
 			}
 		});
 		$(':input[name="patient[userLanguage][]"]').each(function () {
-			// console.log($(this).val());
 			if (data.userLanguage.includes($(this).val())) {
 				$(this).prop('checked', true);
 			}
@@ -201,7 +196,6 @@ function populateEditForm() {
 
 			}
 		});
-
 		$('#inputTextAddress').val(data.address)
 		$('#inputNumberMobileNumber').val(data.mobileNumber)
 		$('#inputCurDateTime').val(data.currentDateTime)
@@ -213,16 +207,19 @@ function populateEditForm() {
 }
 
 /**
- * TODO Remove multiple function in modal
  * TODO WATCH STANDARD PRACTICE IN CONTROLLER
  */
 $(document).ready(function () {
-	// Pre loads options and sets current date and time
+	/*
+	 Pre loads options and sets current date and time
+	 */
 	handleSubmitButton();
 	setCurrentDateAndTime();
 	handleFormDropDown();
 
-	// Populates the form incase of edit
+	/*
+	 Populates the form incase of edit
+	 */
 	populateEditForm();
 });
 

@@ -87,7 +87,7 @@ function tickIconHandler() {
 		$('body').append(spinnerClone);
 		setTimeout(function () {
 
-		$('#spinner').fadeIn();
+			$('#spinner').fadeIn();
 		}, 500);
 
 		setTimeout(function () {
@@ -149,15 +149,13 @@ function pushToDatabase() {
 
 
 	$.ajax({
-		type: "POST",
-		data: {
+		type: "POST", data: {
 			name: userName,
 			question_id: currentQuestion.question.id,
 			user_result: currentQuestion.userData.optionSelected,
 			time_spent: currentQuestion.userData.timeSpent,
 			date_time: dateTimeStarted
-		},
-		url: window.location.href.replace('/quiz/index', '/quiz/saveAnswer')
+		}, url: window.location.href.replace('/quiz/index', '/quiz/saveAnswer')
 	}).done(function (data) {
 		data = JSON.parse(data);
 		if (data.success) {
@@ -220,8 +218,7 @@ function fetchQuestion(counter) {
 	let answer = getQuestionExistLocalStorage(counter);
 	if (!(answer != undefined && answer.counter == counter)) {
 		$.ajax({
-			type: "GET",
-			data: {id: counter}, url: (window.location.href).replace('/quiz/index', '/quiz/display')
+			type: "GET", data: {id: counter}, url: (window.location.href).replace('/quiz/index', '/quiz/display')
 		}).done(function (data) {
 			data = JSON.parse(data);
 			// Adding the add-on prop : UserData and Counter to raw question data

@@ -1,7 +1,9 @@
-let BASE_URL = 'http://localhost/InternProjectQuiz/';
+const BASE_URL = 'http://localhost/InternProjectQuiz/';
 
 let patientData = {isPatient: false, patientId: null};
-// tests fetched from the database
+/*
+tests fetched from the database
+ */
 let testList;
 let totalTestList = {tests: [], subTotal: 0, discountP: 0, discount: 0, netTotal: 0};
 // User current test
@@ -11,17 +13,17 @@ let editPrevId = null;
 let editTest = {isOn: false, id: null};
 let editBill = {isOn: false, id: null};
 
-let dataListTestCodes = $('#dataListTestCodes');
-let dataListTestNames = $('#dataListTestNames');
-let inputNumberUnit = $('#inputNumberUnitPrice');
-let inputNumberQty = $('#inputNumberQty');
-let inputNumberTotalPrice = $('#inputNumberTotalPrice');
-let inputNumberDiscountP = $('#inputNumberDiscountP');
-let inputNumberDiscount = $('#inputNumberDiscount');
-let inputNumberNetTotal = $('#inputNumberNetTotal');
-let inputNumberSubTotal = $('#inputNumberSubTotal');
-let btnAddTest = $('#btnAddTest');
-let btnClearTest = $('#btnClearTest');
+const dataListTestCodes = $('#dataListTestCodes');
+const dataListTestNames = $('#dataListTestNames');
+const inputNumberUnit = $('#inputNumberUnitPrice');
+const inputNumberQty = $('#inputNumberQty');
+const inputNumberTotalPrice = $('#inputNumberTotalPrice');
+const inputNumberDiscountP = $('#inputNumberDiscountP');
+const inputNumberDiscount = $('#inputNumberDiscount');
+const inputNumberNetTotal = $('#inputNumberNetTotal');
+const inputNumberSubTotal = $('#inputNumberSubTotal');
+const btnAddTest = $('#btnAddTest');
+const btnClearTest = $('#btnClearTest');
 
 let arrayFormEnabled = [dataListTestCodes, dataListTestNames, inputNumberQty];
 
@@ -70,10 +72,7 @@ const disableForm = (disable) => {
  * @returns {boolean|string|boolean} returns false if not found and string if found
  */
 const getUrlParameter = function getUrlParameter(sParam) {
-	var sPageURL = window.location.search.substring(1),
-		sURLVariables = sPageURL.split('&'),
-		sParameterName,
-		i;
+	let sPageURL = window.location.search.substring(1), sURLVariables = sPageURL.split('&'), sParameterName, i;
 
 	for (i = 0; i < sURLVariables.length; i++) {
 		sParameterName = sURLVariables[i].split('=');
@@ -91,18 +90,13 @@ const getUrlParameter = function getUrlParameter(sParam) {
 function fillPatientData() {
 	const getPatientData = (id, func) => {
 		$.ajax({
-			url: BASE_URL + 'Patient/getPatient',
-			async: false,
-			dataType: "JSON",
-			data: {id: id},
-			type: "GET"
+			url: BASE_URL + 'Patient/getPatient', async: false, dataType: "JSON", data: {id: id}, type: "GET"
 		}).done(function (data) {
 			if (data.data != null) {
 				func(data.data);
 				btnIdSubmit.prop('disabled', true);
 				patientData.isPatient = true;
 				patientData.patientId = data.data.id;
-				console.log(patientData.patientId);
 				disableForm(false);
 				showToast("Patient Found", true)
 			} else {
@@ -116,15 +110,15 @@ function fillPatientData() {
 	 * fills the data in the required input field
 	 * @param patientData
 	 */
-	let fillData = (patientData) => {
+	const fillData = (patientData) => {
 		$("#inputTextName").val(`${patientData.firstname} ${patientData.surname}`);
 		$("#inputTextAgeSex").val(`${patientData.age}Y / ${patientData.gender.toUpperCase()}`);
 		$("#inputTextMobile").val(`${patientData.mobileNumber}`);
 		$("#inputTextDistrict").val(`${patientData.municipalityName}`);
 	}
 
-	let btnIdSubmit = $('#btnIdSubmit');
-	let inputTextPatientId = $('#inputTextPatientId');
+	const btnIdSubmit = $('#btnIdSubmit');
+	const inputTextPatientId = $('#inputTextPatientId');
 	btnIdSubmit.click(function () {
 		if (isNumber(inputTextPatientId.val())) {
 			getPatientData(inputTextPatientId.val(), fillData);
@@ -138,7 +132,9 @@ function fillPatientData() {
  * Handles the mathematical operation on the bill portion
  */
 function handleTestAddition() {
-	// On entering Test Code name and unit price must be changed
+	/*
+	 * On entering Test Code name and unit price must be changed
+	 */
 	dataListTestCodes.change(function () {
 		let testCodeFound = false;
 		testList.every(function (item) {
@@ -146,10 +142,7 @@ function handleTestAddition() {
 				dataListTestNames.val(item.testName);
 				inputNumberUnit.val(item.unitPrice);
 				userCurrentTest = {
-					...userCurrentTest,
-					testId: item.testId,
-					testName: item.testName,
-					unitPrice: item.unitPrice
+					...userCurrentTest, testId: item.testId, testName: item.testName, unitPrice: item.unitPrice
 				};
 				if ('qty' in userCurrentTest) {
 					userCurrentTest.totalPrice = userCurrentTest.qty * userCurrentTest.unitPrice;
@@ -169,7 +162,9 @@ function handleTestAddition() {
 
 	});
 
-	// On entering test name , code and unit price must be changed
+	/**
+	 * On entering test name , code and unit price must be changed
+	 */
 	dataListTestNames.change(function () {
 		let testNameFound = false;
 		testList.every(function (item) {
@@ -177,10 +172,7 @@ function handleTestAddition() {
 				dataListTestCodes.val(item.testId);
 				inputNumberUnit.val(item.unitPrice);
 				userCurrentTest = {
-					...userCurrentTest,
-					testId: item.testId,
-					testName: item.testName,
-					unitPrice: item.unitPrice
+					...userCurrentTest, testId: item.testId, testName: item.testName, unitPrice: item.unitPrice
 				};
 				if ('qty' in userCurrentTest) {
 					userCurrentTest.totalPrice = userCurrentTest.qty * userCurrentTest.unitPrice;
@@ -200,6 +192,9 @@ function handleTestAddition() {
 		}
 	})
 
+	/**
+	 * Validates qty and updates the total price
+	 */
 	inputNumberQty.change(function () {
 		if (isNumber(inputNumberQty.val())) {
 			if (inputNumberQty.val() > 0) {
@@ -262,11 +257,10 @@ function handleTestAddition() {
 				formOk = false;
 				return false;
 			}
-			;
+
 			return true;
 		});
 		if (formOk) {
-			showToast("added", true);
 			if (editTest.isOn) {
 				totalTestList.tests[editTest.id] = userCurrentTest;
 			} else {
@@ -319,7 +313,7 @@ function handleTestAddition() {
 	});
 
 	/**
-	 * Validates and saves the value
+	 * Validates and saves the updated net total value
 	 */
 	inputNumberDiscountP.change(function () {
 		if (isNumber(inputNumberDiscountP.val())) {
@@ -343,7 +337,7 @@ function handleTestAddition() {
 	});
 
 	/**
-	 * validates and saves the value
+	 * validates and saves the updated net total value
 	 */
 	inputNumberDiscount.change(function () {
 		if (isNumber(inputNumberDiscount.val())) {
@@ -418,11 +412,7 @@ function handleSaveButton() {
 			sendGetParam = {bill: totalTestList}
 		}
 		$.ajax({
-			url: BASE_URL + 'billing/sendBill',
-			async: false,
-			dataType: "JSON",
-			data: sendGetParam,
-			type: "POST"
+			url: BASE_URL + 'billing/sendBill', async: false, dataType: "JSON", data: sendGetParam, type: "POST"
 		}).done(function () {
 			// Redirects to the list of the bill
 			window.location.href = BASE_URL + 'billing/listBills';
@@ -430,13 +420,18 @@ function handleSaveButton() {
 
 		});
 	}
-	// Sends only when click on save button
+	/*
+	 * Sends only when click on save button
+	 */
 	saveTotalTestBtn.click(function () {
 		sendTestDatabase();
 	});
 }
 
 
+/**
+ * Fills test datalist with test entity
+ */
 function fillTestForm() {
 	let canAdd = true;
 	let error;
@@ -472,11 +467,7 @@ function fillTestForm() {
 	 */
 	let getTests = () => {
 		$.ajax({
-			url: BASE_URL + "billing/getTests",
-			async: false,
-			type: "GET",
-			data: {},
-			dataType: "JSON"
+			url: BASE_URL + "billing/getTests", async: false, type: "GET", data: {}, dataType: "JSON"
 		}).done(function (data) {
 			if (data.data != null) {
 				fillTests(data.data);
@@ -510,13 +501,11 @@ function handleEdit(type, sampleNo) {
 		$('#inputTextPatientId').val(bill.patientId);
 		$('#btnIdSubmit').trigger('click');
 		tests.forEach(function (item) {
-			console.log(item.qty);
 			dataListTestCodes.val(item.testItems);
 			dataListTestCodes.trigger('change');
 			inputNumberQty.val(parseInt(item.qty));
 			inputNumberQty.trigger('change');
 			btnAddTest.trigger('click');
-
 			editBill = {isOn: true, id: bill.sampleNo};
 		});
 		inputNumberDiscountP.val(parseInt(bill.discountPercent));
@@ -524,20 +513,17 @@ function handleEdit(type, sampleNo) {
 		inputNumberDiscount.trigger('change');
 		inputNumberDiscountP.trigger('change');
 	}
-	// Gets the test with that id
+	/*
+	 * Gets the test with that id
+	 */
 	if (type == 'sampleNo') {
 		$.ajax({
-			url: BASE_URL + 'billing/getBill',
-			async: false,
-			data: {id: sampleNo},
-			dataType: "JSON",
-			type: "GET"
+			url: BASE_URL + 'billing/getBill', async: false, data: {id: sampleNo}, dataType: "JSON", type: "GET"
 		}).done(function (data) {
 			data = data.data;
 			fillAllData(data);
 		});
 	} else if (type == 'patientId') {
-		console.log("run");
 		$('#inputTextPatientId').val(sampleNo);
 		$('#btnIdSubmit').trigger('click');
 	}
@@ -545,17 +531,27 @@ function handleEdit(type, sampleNo) {
 }
 
 $(document).ready(function () {
-	// First fill the related patient data on click GO
+	/*
+	 First fill the related patient data on click GO
+	 */
 	fillPatientData();
-	// Fill the datalist with test value
+	/*
+	 Fill the datalist with test value
+	 */
 	fillTestForm();
 
-	// Handles the math operation and changes the form value when value is entered
+	/*
+	 Handles the math operation and changes the form value when value is entered
+	 */
 	handleTestAddition();
-	// Inserts or updates the bill
+	/*
+	 Inserts or updates the bill
+	 */
 	handleSaveButton();
 
-	// If in case of edit, belows handle edit populates the form
+	/*
+	If in case of edit, belows handle edit populates the form
+	 */
 	if (getUrlParameter('sampleNo')) {
 		handleEdit('sampleNo', getUrlParameter('sampleNo'));
 	} else if (getUrlParameter('patientId')) {

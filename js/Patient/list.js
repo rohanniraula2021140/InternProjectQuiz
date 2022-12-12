@@ -1,14 +1,5 @@
 let BASE_URL = 'http://localhost/InternProjectQuiz/';
-let tableHead =	'<tr>' +
-	'<th>SN</th>' +
-	'<th>PatientId</th>' +
-	'<th>Patient Name</th>' +
-	'<th>Age/Gender</th>' +
-	'<th>Municipality</th>' +
-	'<th>Address</th>' +
-	'<th>Registered Date</th>' +
-	'<th>Actions</th>' +
-	'</tr>';
+let tableHead = '<tr>' + '<th>SN</th>' + '<th>PatientId</th>' + '<th>Patient Name</th>' + '<th>Age/Gender</th>' + '<th>Municipality</th>' + '<th>Address</th>' + '<th>Registered Date</th>' + '<th>Actions</th>' + '</tr>';
 
 /**
  * Gets the db data from the url
@@ -18,11 +9,7 @@ let tableHead =	'<tr>' +
  */
 let getDBData = (url, param, func) => {
 	$.ajax({
-		url: BASE_URL + url,
-		data: param,
-		dataType: "JSON",
-		type: "GET",
-		async: false
+		url: BASE_URL + url, data: param, dataType: "JSON", type: "GET", async: false
 	}).done(function (response) {
 		func(response.data);
 	});
