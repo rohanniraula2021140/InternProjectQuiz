@@ -94,12 +94,9 @@ if (isset($patData)) {
 </div>
 
 <!--Mobile Number input: text-->
-<div class="input-group mb-3 w-50 mt-4" style="display: none;">
-	<span class="input-group-text">Date Time</span>
-	<input type="datetime-local" class="form-control" name="patient[currentDateTime]" id="inputCurDateTime"
+	<input type="hidden"  class="form-control" name="patient[currentDateTime]" id="inputCurDateTime"
 		   placeholder="date" value=""
 		   id="curDateTime">
-</div>
 
 <a class="btn btn-outline-danger mt-4" href="<?php echo base_url('Patient/listPatient'); ?>" id="cancelBtn">Cancel</a>
 <button type="button" class="btn btn-outline-success m-auto mt-4" id="submitBtn">Add Patient</button>

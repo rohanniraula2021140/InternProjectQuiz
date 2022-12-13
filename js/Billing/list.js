@@ -33,9 +33,9 @@ const showList = () => {
 						<td>${item.billingDate}</td>
 						<td>${item.firstname} ${item.surname}</td>
 						<td>${item.sampleNo}</td>
-						<td>${item.subTotal}</td>
-						<td>${item.discountPercent}% / Rs.${item.discountAmount}</td>
-						<td>${item.netTotal}</td>
+						<td>Rs. ${item.subTotal}</td>
+						<td>${item.discountPercent}% / Rs. ${item.discountAmount}</td>
+						<td>Rs. ${item.netTotal}</td>
 						<td><a href="${BASE_URL}billing/edit?sampleNo=${item.sampleNo}" type="button" class="btn btn-outline-warning mb-3">Edit</a><button class="btn mb-3 btn-outline-info viewBtn" value="${item.sampleNo}">View</button><button class="btn mb-3 btn-danger removeBtn" value="${item.sampleNo}">Remove</button></td>
 					</tr>`;
 		});
@@ -52,17 +52,17 @@ const showList = () => {
 		let table = `<table class="table table-hover">
 					<tr><td>Billing Date</td><td>${data.billingDate}</td></tr>
 					<tr><td>Sample No</td><td>${data.sampleNo}</td></tr>
-					<tr><td>Sub total</td><td>${data.subTotal}</td></tr>
+					<tr><td>Sub total</td><td>Rs.${data.subTotal}</td></tr>
 					<tr><td>D% / DAmt</td><td>${data.discountPercent}% / Rs.${data.discountAmount}</td></tr>
-					<tr><td>Net Total</td><td>${data.netTotal}</td></tr>`;
+					<tr><td>Net Total</td><td>Rs.${data.netTotal}</td></tr>`;
 		wholeData.tests.forEach(function (item, index) {
 			table += `<tr><td></td><td></td></tr>`;
 			table += `<tr><td colspan="2">Test: ${index + 1}</td></tr>`
 			table += `<tr><td>Test Code</td><td>${item.testItems}</td></tr>`
 			table += `<tr><td>Test Name</td><td>${item.testName}</td></tr>`
 			table += `<tr><td>Qty</td><td>${item.qty}</td></tr>`
-			table += `<tr><td>Unit Price</td><td>${item.unitPrice}</td></tr>`
-			table += `<tr><td>Total Price</td><td>${item.price}</td></tr>`
+			table += `<tr><td>Unit Price</td><td>Rs.${item.unitPrice}</td></tr>`
+			table += `<tr><td>Total Price</td><td>Rs.${item.price}</td></tr>`
 		});
 		table += '</table>';
 		$('#modalTitle').text('View Bill');

@@ -38,8 +38,8 @@
 						Test
 					</a>
 					<ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-						<li><a class="dropdown-item" href="<?= base_url('/Patient/billing/edit') ?>">Add test</a></li>
-						<li><a class="dropdown-item" href="<?= base_url('/Patient/billing/listBills') ?>">View tests</a>
+						<li><a class="dropdown-item" href="<?= base_url('/billing/edit') ?>">Add test</a></li>
+						<li><a class="dropdown-item" href="<?= base_url('/billing/listBills') ?>">View tests</a>
 						</li>
 					</ul>
 				</li>
