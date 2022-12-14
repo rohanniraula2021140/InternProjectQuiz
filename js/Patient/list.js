@@ -12,8 +12,29 @@ let getDBData = (url, param, func) => {
 		url: BASE_URL + url, data: param, dataType: "JSON", type: "GET", async: false
 	}).done(function (response) {
 		func(response.data);
+	}).fail(function(response) {
+		console.log(response.responseText);
 	});
 };
+
+/**
+ * Shows toast
+ * @param msg string message to be displayed
+ * @param success boolean variable denoting status
+ */
+const showToast = (msg, success) => {
+	$('#toastBody').text(msg);
+	$('#liveToastBtn').click();
+	let toastHead = $('#toastHead');
+	// bg-success
+	if (success) {
+		toastHead.addClass('bg-success');
+		toastHead.removeClass('bg-danger');
+	} else {
+		toastHead.removeClass('bg-success');
+		toastHead.addClass('bg-danger');
+	}
+}
 
 /**
  * Show the patient data on click view on list
@@ -94,4 +115,8 @@ $(document).ready(function () {
 		}
 	});
 	getDBData("Patient/getPatient", {}, showPatientData);
+	if ($('#toastBody').text() !== "") {
+		console.log($('#toastBody').text())
+		showToast($('#toastBody').text(), true);
+	}
 });

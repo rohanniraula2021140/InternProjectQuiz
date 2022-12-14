@@ -8,9 +8,7 @@
 			<small style="color:white;">0 sec ago</small>
 			<button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
 		</div>
-		<div class="toast-body" id="toastBody">
-
-		</div>
+		<div class="toast-body" id="toastBody"><?= isset($message)? $message : "" ?></div>
 	</div>
 </div>
 

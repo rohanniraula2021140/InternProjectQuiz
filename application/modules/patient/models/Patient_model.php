@@ -13,8 +13,10 @@ class Patient_model extends CI_Model
 		if (isset($data['id'])) {
 			$id = $data['id'];
 			unset($data['id']);
+			$this->session->set_flashdata(['message'=>'Patient Edited Successfully']);
 			return $this->db->where('id', $id)->update('patients', $data);
 		} else {
+			$this->session->set_flashdata(['message'=>'Patient Added Successfully']);
 			return $this->db->insert('patients', $data);
 		}
 	}

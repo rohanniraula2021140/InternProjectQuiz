@@ -1,4 +1,24 @@
 let BASE_URL = 'http://localhost/InternProjectQuiz/';
+
+/**
+ * Shows toast
+ * @param msg string message to be displayed
+ * @param success boolean variable denoting status
+ */
+const showToast = (msg, success) => {
+	$('#toastBody').text(msg);
+	$('#liveToastBtn').click();
+	let toastHead = $('#toastHead');
+	// bg-success
+	if (success) {
+		toastHead.addClass('bg-success');
+		toastHead.removeClass('bg-danger');
+	} else {
+		toastHead.removeClass('bg-success');
+		toastHead.addClass('bg-danger');
+	}
+}
+
 const showList = () => {
 	/**
 	 * Refresh the page automatically
@@ -90,29 +110,12 @@ const showList = () => {
 
 }
 
-/**
- * Show the Toast with red or green colour
- * @param msg string message to be displayed on toast
- * @param success good or bad condition
- */
-const showToast = (msg, success) => {
-	$('#toastBody').text(msg);
-	$('#liveToastBtn').click();
-	let toastHead = $('#toastHead');
-	// bg-success
-	if (success) {
-		toastHead.addClass('bg-success');
-		toastHead.removeClass('bg-danger');
-	} else {
-		toastHead.removeClass('bg-success');
-		toastHead.addClass('bg-danger');
-	}
-}
-
-
 /*
  Showing the bill list to the user
  */
 $(document).ready(function () {
 	showList();
+	if ($('#toastBody').text() !== "") {
+		showToast($('#toastBody').text(), true);
+	}
 })

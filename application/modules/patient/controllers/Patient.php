@@ -6,6 +6,7 @@ class Patient extends MX_Controller
 	{
 		$this->load->model('Patient_model', 'pModel');
 		$this->load->model('location_model', 'lModel');
+		$this->load->library('session');
 
 	}
 
@@ -25,6 +26,7 @@ class Patient extends MX_Controller
 	{
 		$this->load->view('navbar');
 		$this->load->view('modal');
+		$this->load->view('toast', ['message'=>$this->session->flashdata('message')]);
 		$this->load->view('list');
 	}
 

@@ -26,6 +26,7 @@ class billing_model extends CI_Model
 
 	public function removeBill($id)
 	{
+		$this->session->set_flashdata('message','Bill Removed');
 		return $this->db->where('sampleNo', $id)->delete('billinfos');
 	}
 
@@ -41,10 +42,11 @@ class billing_model extends CI_Model
 		if (isset($bill['sampleNo'])) {
 			$billId = $bill['sampleNo'];
 			unset($bill['sampleNo']);
+			$this->session->set_flashdata('message','Bill Updated');
 			$this->db->where('sampleNo', $billId)->update('billinfos', $bill);
 			$this->db->where('sampleNo', $billId)->delete('testitems');
 		} else {
-
+			$this->session->set_flashdata('message','Bill Saved');
 			$this->db->insert('billinfos', $bill);
 			$billId = $this->db->insert_id();
 		}

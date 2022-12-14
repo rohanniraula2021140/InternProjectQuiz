@@ -6,6 +6,7 @@ class billing extends MX_Controller
 	public function __construct()
 	{
 		$this->load->model('billing_model', 'bModel');
+		$this->load->library('session');
 	}
 
 	public function edit()
@@ -20,7 +21,7 @@ class billing extends MX_Controller
 	{
 		$this->load->view('navbar');
 		$this->load->view('modal');
-		$this->load->view('toast');
+		$this->load->view('toast', ['message'=>$this->session->flashdata('message')]);
 		$this->load->view('billing/list');
 	}
 
